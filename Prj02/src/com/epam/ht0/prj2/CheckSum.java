@@ -1,7 +1,5 @@
 package com.epam.ht0.prj2;
 
-
-
 import com.epam.ht0.prj2.Entity.Mp3File;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
@@ -91,8 +89,6 @@ public class CheckSum {
      * @return
      * @throws Exception
      */
-
-
       String getMD5Checksum(String filename) throws Exception {
         byte[] b = createChecksum(filename);
         String result = "";
@@ -102,5 +98,4 @@ public class CheckSum {
         }
         return result;
     }
-
 }
