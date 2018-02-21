@@ -19,6 +19,10 @@ public class CheckSum {
 
     private static final Logger LOGGER = LogManager.getLogger(CheckSum.class);
 
+    /**
+     * This method compares files and finds files with the same checksum
+     * @param mp3FileList
+     */
     public void checkSumCompare(List<Mp3File> mp3FileList){
         PropertyConfigurator.configure("log4j.properties");
        Map<String, Integer> map = new HashMap<>();
@@ -36,9 +40,6 @@ public class CheckSum {
                 System.out.println("Ошибка чтения файла");
             }
         }
-
-
-
 
         int count = 0;
         for (Map.Entry<String, Integer> pair: map.entrySet()){
@@ -58,6 +59,12 @@ public class CheckSum {
         }
     }
 
+    /**
+     * This methods create a checksum of file
+     * @param filename
+     * @return
+     * @throws Exception
+     */
     public  byte[] createChecksum(String filename) throws Exception {
         InputStream fis =  new FileInputStream(filename);
 
@@ -76,9 +83,17 @@ public class CheckSum {
         return complete.digest();
     }
 
-    // see this How-to for a faster way to convert
-    // a byte array to a HEX string
-    public  String getMD5Checksum(String filename) throws Exception {
+
+    /**
+     * This method gets MD5 checksum
+     *converting a byte array to a HEX string
+     * @param filename
+     * @return
+     * @throws Exception
+     */
+
+
+      String getMD5Checksum(String filename) throws Exception {
         byte[] b = createChecksum(filename);
         String result = "";
 
