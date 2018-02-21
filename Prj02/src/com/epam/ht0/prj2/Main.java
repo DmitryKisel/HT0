@@ -1,7 +1,5 @@
 package com.epam.ht0.prj2;
 
-
-
 import com.epam.ht0.prj2.Entity.Mp3File;
 
 import java.io.File;
@@ -13,9 +11,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main {
-   public final static String EXT = "mp3";
+
+    public final static String EXT = "mp3";
 
     public static void main(String[] args) {
+        if(args.length == 0){
+            System.exit(0);
+        }
 
         //Create a set for using only different paths and skipp a repeating paths
         Set<String> pathSet = new HashSet<>();
@@ -40,10 +42,10 @@ public class Main {
         AudioParser audioParser = new AudioParser();
         mp3FileList = audioParser.mp3Parser(fileList);
 
-        System.out.println();
+
         Catalogizator catalogizator = new Catalogizator();
         catalogizator.mp3DataConverter(mp3FileList);
-        System.out.println();
+
 
         CheckSum checkSum = new CheckSum();
         checkSum.checkSumCompare(mp3FileList);
@@ -51,7 +53,7 @@ public class Main {
 
     }
     static boolean isCorrectPath(String arg) {
-        Pattern pattern = Pattern.compile("([a-zA-Z]:)?(\\\\[a-zA-Zа-яА-Я\\s0-9!_.-@#$%]+)+\\\\?");
+        Pattern pattern = Pattern.compile("([a-zA-Z]:)?(\\\\[a-zA-Zа-яА-Я\\s0-9!_.-@#$%]+)?+\\\\?");
         Matcher matcher = pattern.matcher(arg);
         return matcher.matches();
     }

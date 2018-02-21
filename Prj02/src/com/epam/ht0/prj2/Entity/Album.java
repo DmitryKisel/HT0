@@ -27,6 +27,10 @@ public class Album {
         return sb.toString();
     }
 
+    /**
+     * This method adopts object data for writing in HTML-file
+     * @return
+     */
     public String toHTMLStyle() {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, List<Song>> entry : albumMap.entrySet()) {

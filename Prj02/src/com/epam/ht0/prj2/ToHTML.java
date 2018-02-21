@@ -1,16 +1,17 @@
 package com.epam.ht0.prj2;
 
-import com.epam.ht0.prj2.Entity.Artist;
-import com.epam.ht0.prj2.Entity.MusicBank;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 
 
-public class ToHTML {
-
+class ToHTML {
+    /**
+     * This method writes data to HTML file
+     *
+     * @param line
+     * @throws IOException
+     */
     void writeHTML(String line) throws IOException {
         BufferedWriter bw = null;
         try {
@@ -18,14 +19,21 @@ public class ToHTML {
             bw.write(line);
 
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally {
-            bw.close();
+            System.out.println("An ERROR occurred while writing data to HTML file");
+        } finally {
+            if (bw != null) {
+                bw.close();
+            }
         }
     }
 
-    public String prepareForHTML(String data){
+    /**
+     * This method prepares  HTML file by adding adding necessary tags and incoming data
+     *
+     * @param data
+     * @return
+     */
+    String prepareForHTML(String data) {
         StringBuilder sb = new StringBuilder();
         sb.append("<!DOCTYPE html>")
                 .append("<html>")
@@ -39,9 +47,6 @@ public class ToHTML {
                 .append(data)
                 .append("</body>")
                 .append("</html>");
-
         return sb.toString();
-
     }
-
 }

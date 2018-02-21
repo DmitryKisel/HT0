@@ -28,6 +28,10 @@ public class MusicBank {
         return sb.toString();
     }
 
+    /**
+     * This method adopts object data for writing in HTML-file
+     * @return
+     */
     public String toHTMLStyle() {
         StringBuilder sb = new StringBuilder();
         for(Map.Entry<String, Artist> entry : musicBankMap.entrySet()){

@@ -4,14 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Artist {
-    Map<String, Album> artistMap;
+    private Map<String, Album> artistMap;
+
 
     public Map<String, Album> getArtistMap() {
         return artistMap;
-    }
-
-    public void setArtistMap(Map<String, Album> artistMap) {
-        this.artistMap = artistMap;
     }
 
     public Artist() {
@@ -29,6 +26,10 @@ public class Artist {
         return sb.toString();
     }
 
+    /**
+     * This method adopts object data for writing in HTML-file
+     * @return
+     */
     public String toHTMLStyle() {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, Album> entry :

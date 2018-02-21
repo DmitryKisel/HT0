@@ -35,6 +35,7 @@ public class Song {
         this.pathToFile = pathToFile;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,14 +43,16 @@ public class Song {
 
         Song song = (Song) o;
 
-        if (songName != null ? !songName.equals(song.songName) : song.songName != null) return false;
-        return duration.equals(song.duration);
+        if (!songName.equals(song.songName)) return false;
+        if (!duration.equals(song.duration)) return false;
+        return pathToFile.equals(song.pathToFile);
     }
 
     @Override
     public int hashCode() {
-        int result = songName != null ? songName.hashCode() : 0;
+        int result = songName.hashCode();
         result = 31 * result + duration.hashCode();
+        result = 31 * result + pathToFile.hashCode();
         return result;
     }
 
@@ -64,6 +67,10 @@ public class Song {
     return sb.toString();
     }
 
+    /**
+     * This method adopts object data for writing in HTML-file
+     * @return
+     */
     public String toHTMLStyle() {
               int minutes =  (int) Math.round(duration/60);
               int seconds = (int) Math.round(duration%60);

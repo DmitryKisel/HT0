@@ -3,6 +3,10 @@ package com.epam.ht0.prj2;
 
 
 import com.epam.ht0.prj2.Entity.Mp3File;
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -12,7 +16,11 @@ import java.util.List;
 import java.util.Map;
 
 public class CheckSum {
+
+    private static final Logger LOGGER = LogManager.getLogger(CheckSum.class);
+
     public void checkSumCompare(List<Mp3File> mp3FileList){
+        PropertyConfigurator.configure("log4j.properties");
        Map<String, Integer> map = new HashMap<>();
         for (Mp3File file : mp3FileList){
 
@@ -29,13 +37,18 @@ public class CheckSum {
             }
         }
 
+
+
+
+        int count = 0;
         for (Map.Entry<String, Integer> pair: map.entrySet()){
             if(pair.getValue()>1){
+              count++;
+                LOGGER.log(Level.WARN,"Дубликат"+ count+ ":");
                 try {
-                    System.out.println("Контрольная сумма совпадает:");
                     for (Mp3File file : mp3FileList) {
                         if (getMD5Checksum(file.getPathToFile()).equals(pair.getKey())) {
-                            System.out.println(file.getPathToFile());
+                            LOGGER.log(Level.WARN,"+" + file.getPathToFile());
                         }
                     }
                 }catch (Exception e){

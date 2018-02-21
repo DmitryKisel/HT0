@@ -1,12 +1,12 @@
 package com.epam.ht0.prj2.Entity;
 
 public class Mp3File {
-    String fileName;
-    String artistName;
-    String albumInFile;
-    String songInFile;
-    String pathToFile;
-    double fileDuration;
+    private String fileName;
+    private String artistName;
+    private String albumInFile;
+    private String songInFile;
+    private String pathToFile;
+    private double fileDuration;
 
     public String getArtistName() {
         return artistName;
@@ -63,6 +63,35 @@ public class Mp3File {
         this.songInFile = songInFile;
         this.pathToFile = pathToFile;
         this.fileDuration = fileDuration;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Mp3File mp3File = (Mp3File) o;
+
+        if (Double.compare(mp3File.fileDuration, fileDuration) != 0) return false;
+        if (!fileName.equals(mp3File.fileName)) return false;
+        if (!artistName.equals(mp3File.artistName)) return false;
+        if (!albumInFile.equals(mp3File.albumInFile)) return false;
+        if (!songInFile.equals(mp3File.songInFile)) return false;
+        return pathToFile.equals(mp3File.pathToFile);
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = fileName.hashCode();
+        result = 31 * result + artistName.hashCode();
+        result = 31 * result + albumInFile.hashCode();
+        result = 31 * result + songInFile.hashCode();
+        result = 31 * result + pathToFile.hashCode();
+        temp = Double.doubleToLongBits(fileDuration);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 
     @Override
