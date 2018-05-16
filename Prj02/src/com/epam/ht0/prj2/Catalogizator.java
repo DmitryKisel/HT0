@@ -8,6 +8,8 @@ import org.apache.log4j.PropertyConfigurator;
 import java.io.IOException;
 import java.util.*;
 
+
+
 public class Catalogizator {
     private static final Logger LOGGER = LogManager.getLogger(Catalogizator.class);
     MusicBank musicBank = new MusicBank();
